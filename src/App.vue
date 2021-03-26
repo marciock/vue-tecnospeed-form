@@ -1,11 +1,20 @@
 <template>
-  <div id="app">
-    <BarraSuperior />
-    <BarraMenu />
-    <div class="row left-space right-space vert-expand border-bottom">
-      <h4>FICHA CADASTRAL</h4>
-    </div>
-    
+  <div id="app" >
+  
+        <BarUp />
+        <BarMenu />
+
+       <div class="container justify-content-center"> 
+        <div class=" vert-expand border-bottom mbot">
+          <h5>FICHA CADASTRAL</h5>
+        </div>
+        <div > 
+          <ProgressBar  barStyle="width:10%" barValue="10"  />
+      
+        </div>
+          <FormDash  />  
+       </div>
+     
   </div>
 </template>
 
@@ -17,8 +26,10 @@ import 'font-awesome/css/font-awesome.css';
 import './assets/css/barras.css'
 
 
-import BarraSuperior from './components/BarraSuperior';
-import BarraMenu from './components/BarraMenu';
+import BarUp from './components/BarUp';
+import BarMenu from './components/BarMenu';
+import ProgressBar from './components/ProgressBar';
+import FormDash from './components/FormDash';
 
 
 
@@ -26,15 +37,20 @@ export default {
   name: 'App',
   components: {
     
-    BarraSuperior,
-    BarraMenu
+    BarUp,
+    BarMenu,
+    ProgressBar,
+    FormDash
     
     
   },
+  
   
 }
 </script>
 
 <style>
-
+  .mbot{
+    margin-bottom:3em;
+  }
 </style>

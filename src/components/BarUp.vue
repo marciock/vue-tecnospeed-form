@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light up-bar-color navbar-sm"  >
 
-  <div class="container-fluid ">
-    <span class="nav-brand left-space">TEste</span>
+  <div class="container   ">
+    <span class="nav-brand  ">TEste</span>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barraSuperior" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
 
 
 export default {
-    name:'BarraSuperior',
+    name:'BarUp',
     
     
 }

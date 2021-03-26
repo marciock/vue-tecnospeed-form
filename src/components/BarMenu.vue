@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom"  >
 
-  <div class="container-fluid ">
+  <div class="container ">
     <a class="nav-brand left-space"><img src="logo.png"></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barraMenu" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
 import DropMenu from './DropMenu';
 
 export default {
-    name:'BarraMenu',
+    name:'BarMenu',
     components:
     {DropMenu},
     data:()=>{
