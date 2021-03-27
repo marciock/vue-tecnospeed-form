@@ -1,13 +1,14 @@
 <template>
-    <div class="border"   style="margin-top:10em;margin-bottom:5em;">
+    <div class="border"   style="margin-top:3em;margin-bottom:5em;">
           <div class="mt-3"> 
-            <DadosOrganizacao v-show="dadosOrganizaco"/>
-            <InformacoesAdicionais v-show="informacoesAdicionais"/>
+            <DadosOrganizacao v-show="history===15"/>
+            <InformacoesAdicionais v-show="history===35"/>
 
           </div>
     </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 
 import DadosOrganizacao from './forms/DadosOrganizacao';
 import InformacoesAdicionais from './forms/InformacoesAdiconais';
@@ -27,18 +28,9 @@ export default {
         }
     },
     computed:{
+      ...mapState('register',['history','barPercent'])
       
     },
-    methods:{
-       showInformacoes(){
-           this.dadosOrganizaco=false;
-           this.informacoesAdicionais=true;
-       }
-        
-    },
-    mounted(){
-      this.dadosOrganizaco=true;
-      this.informacoesAdicionais=false;
-    }
+    
 }
 </script>

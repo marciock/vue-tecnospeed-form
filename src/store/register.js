@@ -9,11 +9,12 @@ export default{
             nomeFantasia:'',
             cnpj:'',
             inscricaoEstadual:'',
+            telefone:'',
             isento:'',
             tipoEmpresa:'',
             cep:'',
             endereco:'',
-            mumero:'',
+            numero:'',
             complemento:'',
             bairro:'',
             estado:'',
@@ -23,7 +24,15 @@ export default{
         barProgress:'',
         estados:'',
         cidades:'',
-        cnpj:{message:'',status:true}
+        status:'btn-secondary',
+        barPercent:15,
+        widthPercent:'width:15%',
+        icon35:'btn-secondary',
+        icon55:'btn-secondary',
+        icon75:'btn-secondary',
+        icon100:'btn-secondary',
+        history:15
+       
 
     },
     mutations:{
@@ -33,9 +42,34 @@ export default{
         mutCidades(state,cidadesShow){
             state.cidades=cidadesShow
         },
-        mutCNPJ(state,cnpjValidation){
-            state.cnpj=cnpjValidation
+        mut35(state,actionStatus){
+            state.icon35=actionStatus
+        }, 
+        mut55(state,actionStatus){
+            state.icon55=actionStatus
+        },
+         mut75(state,actionStatus){
+            state.icon75=actionStatus
+        }, 
+        mut100(state,actionStatus){
+            state.icon100=actionStatus
+        },
+        mutBarPercent(state,actionBarPercent){
+            state.barPercent=actionBarPercent
+        },
+        mutWidthPercent(state,actionWidthPercent){
+            state.widthPercent=actionWidthPercent
+        },
+        mutForwardHistory(state,actionForwardHistory){
+            state.history=actionForwardHistory
+        },
+        mutBackHistory(state,actionBackHistory){
+            state.history=actionBackHistory
+        },
+        mutBackBarPercent(state,actionBackBarPercent){
+            state.barPercent=actionBackBarPercent
         }
+
     },
     actions:{
         estadosShow({commit}){
@@ -65,85 +99,83 @@ export default{
            
             commit('mutCidades',result);
         },
-        cnpjValidation({commit},payload){
+       
+        actionStatus({commit},data){
+            console.log(data)
+            let status='btn-primary';
+            switch (data) {
+                case 35:
+                    commit('mut35',status)
+                    
+                    break;
+                case 55:
+                    commit('mut55',status)
+                    
+                    break;
+                case 75:
+                    commit('mut75',status)
+                    
+                    break;
+                case 100:
+                    commit('mut100',status)
+                    
+                    break;
             
-            const cnpj=payload.replace(/[^\d]+/g,'');
-
-            if(cnpj == '')
-               
-                commit('mutCNPJ',{message:'',status:true})
-               
-            
-     
-            if (cnpj.length != 14 )
-               // result={message:'Obrigatório conter 14 digitos numéricos.',status:false}
-                commit('mutCNPJ',{message:'Obrigatório conter 14 digitos numéricos.',status:false})
-                
-            
-            
-        
-            // Elimina CNPJs invalidos conhecidos
-            if (cnpj == "00000000000000" || 
-                cnpj == "11111111111111" || 
-                cnpj == "22222222222222" || 
-                cnpj == "33333333333333" || 
-                cnpj == "44444444444444" || 
-                cnpj == "55555555555555" || 
-                cnpj == "66666666666666" || 
-                cnpj == "77777777777777" || 
-                cnpj == "88888888888888" || 
-                cnpj == "99999999999999")
-                
-                    // result={message:'Digito inválido',status:false}
-                    commit('mutCNPJ',{message:'Digito inválido',status:false})
-
-                    //console.log(result)
-                
-                
-                
-            // Valida DVs
-         let  tamanho = cnpj.length - 2
-            let  numeros = cnpj.substring(0,tamanho);
-            let digitos = cnpj.substring(tamanho);
-            let soma = 0;
-        let pos = tamanho - 7;
-            for (let i = tamanho; i >= 1; i--) {
-            soma += numeros.charAt(tamanho - i) * pos--;
-            if (pos < 2)
-                    pos = 9;
+                default:
+                    break;
             }
-            let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(0))
-               // result={message:'Digito inválido',status:false}
-                commit('mutCNPJ',{message:'Digito inválido',status:false})
 
-               // console.log(result)
+        },
+        actionBarPercent({commit},data){
+            let percent=parseInt(data)+20;
+
             
-               
-                
-             tamanho = tamanho + 1;
-            numeros = cnpj.substring(0,tamanho);
-            soma = 0;
-            pos = tamanho - 7;
-            for (let i = tamanho; i >= 1; i--) {
-            soma += numeros.charAt(tamanho - i) * pos--;
-            if (pos < 2)
-                    pos = 9;
-            }
-            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(1))
-                return false
+         //   console.log(data)
 
-                return true
-                
-                
-               
+            commit('mutBarPercent',percent);
 
+            
+        },
+        actionBackBarPercent({commit},data){
+            commit('mutBackBarPercent',data);
+        },
+        actionWidthPercent({commit},data){
+            let width=`width:${data}%`;
+            commit('mutWidthPercent',width);
+        },
+        actionForwardHistory({commit},data){
+            
+            
+            let percent=parseInt(data);
+            
+            if(percent <=100){
+                commit('mutForwardHistory',percent);
 
+              //  console.log(percent)
+            }else{
+                commit('mutForwardHistory',parseInt(data));
             }
+
+           
+        },
+        actionBackHistory({commit},data){
+            
+            
+            let percent=parseInt(data)-20
+            
+            if(percent >=15){
+                console.log(percent)
+                commit('mutBackHistory',percent);
+            }else{
+                commit('mutBackHistory',parseInt(data));
+            }
+
+           
+        }
                 
                 
-            }
+    }
+
                 
  
 }

@@ -2,6 +2,9 @@
 .up-bar-color{
     background-color: #f1f7fb ;
 }
+.text-menu-color{
+    color:rgb(75, 156, 223)
+}
 .navbar-sm{
     padding-top: 0.05em;
 }
@@ -26,4 +29,7 @@
 .invalid{
     border-color:#FF0000;
     box-shadow: inset 0 1px rgba(0,0,0,0.075), 0 0 8px rgba(255,0,0,0.6);
+}
+.t-img{
+    width: 10em; height: auto;
 }
